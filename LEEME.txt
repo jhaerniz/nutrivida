@@ -1,0 +1,35 @@
+NUTRIVIDA BOLIVIA — PUBLICACIÓN
+
+Este proyecto es una web estática (HTML, CSS y JavaScript).
+No necesita React, npm install ni comando de compilación para la versión de la expo.
+
+PUBLICAR EN VERCEL DESDE GITHUB
+1. Crea un repositorio en GitHub llamado nutrivida.
+2. Sube TODO el contenido de esta carpeta al nivel principal del repositorio.
+   Debes ver index.html, css/, js/, img/, fonts/, manifest.json, sw.js y vercel.json.
+3. En Vercel elige Add New > Project e importa el repositorio.
+4. Configura:
+   - Framework Preset: Other
+   - Build Command: vacío / Override desactivado
+   - Output Directory: .
+   - Root Directory: ./ (raíz del repositorio)
+5. Pulsa Deploy.
+
+IMPORTANTE SOBRE LOS RECURSOS
+En el ZIP recibido solo estaba img/logo.png. Las fotos de alimentos, img/hero.jpg
+y las tipografías Fraunces.ttf y Figtree.ttf no estaban incluidas. La página puede
+publicarse sin ellas, pero mostrará el fondo de color y emojis de respaldo en vez
+de esas fotos, y usará fuentes alternativas. Añádelas luego en img/ y fonts/ con
+los nombres que espera el código.
+
+DATOS Y PRIVACIDAD
+La versión actual guarda la valoración y los perfiles en el navegador del dispositivo
+(localStorage); no usa Supabase ni sincroniza datos entre dispositivos. El PIN local
+es una comodidad, no una protección de seguridad. No la presentes como un servicio
+de almacenamiento seguro de datos personales.
+
+PRUEBA ANTES DE COMPARTIR EL QR
+- Abre el enlace HTTPS en un teléfono.
+- Prueba el menú, la valoración, crear perfil, guardar registro y borrar perfil.
+- Espera a que cargue por completo y vuelve a abrirla una vez.
+- Después activa modo avión y comprueba qué partes siguen disponibles.

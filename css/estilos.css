@@ -1,0 +1,759 @@
+/* =====================================================
+   NUTRIVIDA BOLIVIA - ESTILOS
+   Está dividido en partes en el mismo orden de la página.
+   Para cambiar colores o letras, edita la parte 1.
+   ===================================================== */
+
+/* ---------- LETRAS (archivos dentro de la carpeta fonts) ---------- */
+@font-face {
+    font-family: 'Fraunces';
+    src: local('Fraunces'), url('../fonts/Fraunces.ttf');
+}
+@font-face {
+    font-family: 'Figtree';
+    src: local('Figtree'), url('../fonts/Figtree.ttf');
+}
+
+/* ---------- 1. COLORES Y LETRAS PRINCIPALES ---------- */
+:root {
+    --azul: #15325f;
+    --azul-claro: #1f4a8a;
+    --rojo: #c4283f;
+    --oro: #e7b035;
+    --verde: #2e7d4f;
+    --morado: #7a4b9a;
+    --fondo: #f6f8fb;
+    --texto: #1b2433;
+    --gris: #5b6578;
+    --letra-titulos: 'Fraunces', Georgia, serif;
+    --letra-texto: 'Figtree', Arial, sans-serif;
+}
+
+/* ---------- 2. CONFIGURACIÓN GENERAL ---------- */
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+body {
+    font-family: var(--letra-texto);
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.6;
+}
+h1, h2, h3, h4 {
+    font-family: var(--letra-titulos);
+    color: var(--azul);
+    line-height: 1.2;
+}
+a {
+    color: inherit;
+}
+a:focus, button:focus, input:focus, select:focus, summary:focus {
+    outline: 3px solid var(--oro);
+}
+
+/* ---------- 3. ENCABEZADO Y MENÚ ---------- */
+.top {
+    background: var(--azul);
+    color: white;
+    padding: 8px 6%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--letra-titulos);
+    font-size: 20px;
+    font-weight: bold;
+}
+.marca img {
+    height: 46px;
+    background: white;
+    border-radius: 50%;
+    padding: 3px;
+}
+.top nav {
+    display: flex;
+    gap: 20px;
+}
+.top nav a {
+    text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 3px solid transparent;
+}
+.top nav a:hover {
+    border-bottom: 3px solid var(--oro);
+}
+.burger {
+    display: none;
+    background: none;
+    color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    width: 46px;
+    height: 42px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ---------- 4. BOTONES ---------- */
+.btn {
+    display: inline-block;
+    background: var(--rojo);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 26px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #a41f33;
+}
+.btn-borde {
+    background: transparent;
+    border: 2px solid white;
+}
+.btn-borde:hover {
+    background: white;
+    color: var(--azul);
+}
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ---------- 5. PORTADA (con foto de fondo) ---------- */
+.hero {
+    background-color: var(--azul);
+    background-image: linear-gradient(to right, rgba(21,50,95,0.95), rgba(21,50,95,0.6)), url(../img/hero.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 70px 6%;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.hero-txt {
+    flex: 1;
+}
+.hero h1 {
+    color: white;
+    font-size: 52px;
+    margin-bottom: 18px;
+}
+.hero p {
+    color: #dbe6f5;
+    font-size: 18px;
+    margin-bottom: 28px;
+}
+
+/* ---------- 6. PLATO DE COLORES ---------- */
+.plato-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+.plato {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: conic-gradient(#e7b035 0 30%, #2e7d4f 30% 62%, #c4283f 62% 82%, #7a4b9a 82% 100%);
+    border: 14px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: girar 1.2s ease-out;
+}
+.plato img {
+    width: 160px;
+    background: white;
+    border-radius: 50%;
+    padding: 8px;
+}
+@keyframes girar {
+    from { transform: rotate(-120deg) scale(0.7); opacity: 0; }
+}
+.leyenda {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.leyenda button {
+    width: 100%;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+}
+.leyenda button[aria-pressed=true] {
+    background: white;
+    color: var(--azul);
+}
+.leyenda i {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+.plato-info {
+    min-height: 90px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    font-size: 15px;
+    color: white;
+}
+
+/* ---------- 7. SECCIONES (parte común) ---------- */
+.sec {
+    padding: 70px 6%;
+}
+.sec.alt {
+    background: white;
+}
+.cab {
+    max-width: 760px;
+    margin: 0 auto 36px auto;
+    text-align: center;
+}
+.cab h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.cab p {
+    color: var(--gris);
+}
+
+/* ---------- 8. FORMULARIO Y RESULTADO ---------- */
+.val {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+form {
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(21,50,95,0.12);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+label {
+    display: grid;
+    gap: 6px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.ancho {
+    grid-column: 1 / -1;
+}
+input, select {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 12px;
+    border: 2px solid #cfd8e6;
+    border-radius: 10px;
+    background: white;
+    color: var(--texto);
+}
+.error {
+    grid-column: 1 / -1;
+    color: var(--rojo);
+    font-weight: bold;
+}
+.resultado {
+    background: var(--azul);
+    color: white;
+    padding: 28px;
+    border-radius: 16px;
+}
+.resultado[hidden] {
+    display: none;
+}
+.resultado h4 {
+    color: var(--oro);
+    font-size: 18px;
+    margin: 18px 0 10px 0;
+}
+.resultado a {
+    color: var(--oro);
+}
+.imc {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+.num {
+    font-family: var(--letra-titulos);
+    font-size: 52px;
+    font-weight: bold;
+    color: var(--oro);
+    line-height: 1;
+}
+.gauge {
+    height: 14px;
+    border-radius: 7px;
+    position: relative;
+    background: linear-gradient(to right, #4aa3df 14%, #2e7d4f 14% 40%, #e7b035 40% 60%, #c4283f 60%);
+}
+.gauge i {
+    position: absolute;
+    top: -6px;
+    width: 6px;
+    height: 26px;
+    background: white;
+    border-radius: 3px;
+    transform: translateX(-50%);
+}
+.escala {
+    display: grid;
+    grid-template-columns: 14fr 26fr 20fr 40fr;
+    font-size: 13px;
+    margin: 8px 0 16px 0;
+}
+.nota, .guardado {
+    font-size: 13px;
+    opacity: 0.85;
+}
+.guardado button {
+    background: none;
+    border: none;
+    color: var(--oro);
+    text-decoration: underline;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+/* gráfico circular de calorías */
+.donut-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 14px;
+}
+.donut-box {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+.donut {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.donut-box::after {
+    content: "";
+    position: absolute;
+    top: 27px;
+    left: 27px;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--azul);
+}
+.donut-box span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+.donut-box b {
+    font-family: var(--letra-titulos);
+    font-size: 24px;
+    color: var(--oro);
+}
+.comidas, .menu {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+    font-size: 15px;
+}
+.comidas i {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.menu small {
+    opacity: 0.75;
+}
+
+/* alimentos recomendados y consejos dentro del resultado */
+.recom, .tips {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+.recom > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.12);
+    padding: 10px 14px;
+    border-radius: 10px;
+}
+.recom span {
+    font-size: 30px;
+}
+.recom p {
+    font-size: 14px;
+}
+.tips p {
+    background: rgba(255,255,255,0.12);
+    padding: 12px 14px;
+    border-radius: 10px;
+    border-left: 4px solid var(--oro);
+}
+
+/* ---------- 9. ALIMENTOS ---------- */
+.grid {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+}
+.alimento {
+    background: var(--fondo);
+    border-radius: 16px;
+    overflow: hidden;
+    border-top: 5px solid var(--oro);
+}
+.alimento:nth-child(3n+2) {
+    border-top-color: var(--verde);
+}
+.alimento:nth-child(3n) {
+    border-top-color: var(--rojo);
+}
+.foto {
+    position: relative;
+    height: 180px;
+    background: #e3eaf4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+}
+.foto::before {
+    content: attr(data-e);
+}
+.foto img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.info {
+    padding: 18px 20px 22px 20px;
+}
+.info h3 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+.uso {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--gris);
+}
+
+/* ---------- 10. ACTIVIDAD FÍSICA ---------- */
+.tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.tabs button {
+    background: white;
+    color: var(--azul);
+    border: 2px solid var(--azul);
+    border-radius: 30px;
+    padding: 10px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.tabs button[aria-selected=true] {
+    background: var(--azul);
+    color: white;
+}
+.panel {
+    max-width: 760px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+.panel div {
+    background: white;
+    padding: 18px 20px;
+    border-radius: 12px;
+    border-left: 5px solid var(--verde);
+    box-shadow: 0 4px 14px rgba(21,50,95,0.1);
+}
+.aviso-act {
+    max-width: 760px;
+    margin: 20px auto 0 auto;
+    text-align: center;
+    font-size: 14px;
+    color: var(--gris);
+}
+
+/* ---------- 11. HÁBITOS ---------- */
+.hab {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+.hab div {
+    background: var(--fondo);
+    padding: 22px;
+    border-radius: 14px;
+    border-bottom: 4px solid var(--azul-claro);
+}
+.hab b {
+    font-family: var(--letra-titulos);
+    font-size: 18px;
+    color: var(--azul);
+}
+
+/* ---------- 12. PREGUNTAS FRECUENTES ---------- */
+.faq {
+    max-width: 760px;
+    margin: auto;
+    display: grid;
+    gap: 12px;
+}
+details {
+    background: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(21,50,95,0.1);
+}
+summary {
+    font-weight: bold;
+    cursor: pointer;
+}
+details p {
+    margin-top: 10px;
+    color: var(--gris);
+}
+
+/* ---------- 13. PIE DE PÁGINA ---------- */
+footer {
+    background: var(--azul);
+    color: #dfe7f3;
+    text-align: center;
+    padding: 32px 6%;
+}
+.cred {
+    font-size: 13px;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* ---------- 14. APARICIÓN SUAVE AL BAJAR ---------- */
+.rev {
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+.rev.vis {
+    opacity: 1;
+}
+
+/* ---------- 14B. SEGUIMIENTO ---------- */
+[hidden] {
+    display: none;
+}
+.seg {
+    max-width: 1000px;
+    margin: auto;
+}
+#form-login {
+    max-width: 420px;
+    margin: auto;
+    grid-template-columns: 1fr;
+}
+.btn-linea {
+    background: transparent;
+    color: var(--azul);
+    border: 2px solid var(--azul);
+    padding: 10px 18px;
+}
+.btn-linea:hover {
+    background: var(--azul);
+    color: white;
+}
+.seg-cab {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.seg-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+#seg-res {
+    background: var(--azul);
+    color: white;
+    padding: 28px;
+    border-radius: 16px;
+}
+#seg-res h3 {
+    color: var(--oro);
+    font-size: 18px;
+    margin: 16px 0 10px 0;
+}
+#seg-res h3:first-child {
+    margin-top: 0;
+}
+#seg-res label {
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+progress {
+    width: 100%;
+    height: 14px;
+    accent-color: #e7b035;
+}
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+}
+.stats div {
+    background: rgba(255,255,255,0.12);
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+.stats b {
+    display: block;
+    font-family: var(--letra-titulos);
+    font-size: 24px;
+    color: var(--oro);
+}
+#seg-res svg {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+}
+.vacio, .nota-seg {
+    font-size: 13px;
+    margin-top: 8px;
+    opacity: 0.85;
+}
+.ok {
+    grid-column: 1 / -1;
+    color: var(--verde);
+    font-weight: bold;
+}
+
+/* ---------- 15. CELULARES Y TABLETS ---------- */
+@media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+    .hab { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+    .burger { display: block; }
+    .top nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+    }
+    .top nav.abierto { display: flex; }
+    .top nav a {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 48px 6%;
+    }
+    .hero h1 { font-size: 34px; }
+    .acciones { justify-content: center; }
+    .val { grid-template-columns: 1fr; }
+    .seg-cols { grid-template-columns: 1fr; }
+    .panel { grid-template-columns: 1fr; }
+    .btn { width: 100%; }
+}
+@media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .hab { grid-template-columns: 1fr; }
+    form { grid-template-columns: 1fr; }
+    .plato { width: 280px; height: 280px; }
+    .plato img { width: 120px; }
+    .leyenda { grid-template-columns: 1fr; }
+}
+
+/* ---------- FUENTES EN EL PIE DE PÁGINA ---------- */
+footer details {
+    max-width: 760px;
+    margin: 14px auto 0 auto;
+    text-align: left;
+}
+footer details ul {
+    padding-left: 20px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--gris);
+}

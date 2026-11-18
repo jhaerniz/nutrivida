@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<!-- =====================================================
+     CONFIGURACIÓN DE LA PÁGINA (título, iconos, estilos)
+     ===================================================== -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NutriVida Bolivia</title>
+<meta name="description" content="Alimentación saludable y actividad física con productos bolivianos.">
+<link rel="icon" href="img/logo.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#15325f">
+<!-- Los colores y las letras se cambian en css/estilos.css, parte 1 -->
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+
+<!-- =====================================================
+     1. ENCABEZADO Y MENÚ
+     Los enlaces del menú llevan a las secciones por su id (#valoracion, etc.)
+     ===================================================== -->
+<header class="top">
+  <a class="marca" href="#inicio"><img src="img/logo.png" alt="Logo del colegio San Vicente de Paúl"><span>NutriVida Bolivia</span></a>
+  <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <nav id="menu" aria-label="Principal">
+    <a href="#valoracion">Mi valoración</a><a href="#seguimiento">Mi seguimiento</a><a href="#alimentos">Alimentos</a><a href="#actividad">Actividad</a><a href="#habitos">Hábitos</a><a href="#preguntas">Preguntas</a>
+  </nav>
+</header>
+
+<main>
+
+
+<!-- =====================================================
+     2. PORTADA (foto de fondo: img/hero.jpg)
+     ===================================================== -->
+<section class="hero" id="inicio">
+
+  <!-- 2A. Título, texto y botones -->
+  <div class="hero-txt">
+    <h1>Alimentación y movimiento con sabor boliviano</h1>
+    <p>Conoce los alimentos de nuestra tierra, haz tu autovaloración en un minuto y encuentra ideas sencillas para cuidarte cada día.</p>
+
+    <div class="acciones">
+      <a class="btn" href="#valoracion">Hacer mi valoración</a>
+      <a class="btn btn-borde" href="#alimentos">Ver alimentos</a>
+    </div>
+
+  </div>
+
+
+  <!-- 2B. Plato de colores. Los textos al tocar cada color están en js/datos.js (PLATO) -->
+  <figure class="plato-wrap">
+
+    <div class="plato" role="img" aria-label="Plato dividido en granos y tubérculos, verduras, frutas y legumbres">
+      <img src="img/logo.png" alt="">
+    </div>
+
+    <figcaption>
+      <ul class="leyenda">
+        <li><button type="button" data-k="granos"><i style="background:var(--oro)"></i>Granos y tubérculos</button></li>
+        <li><button type="button" data-k="verduras"><i style="background:var(--verde)"></i>Verduras</button></li>
+        <li><button type="button" data-k="frutas"><i style="background:var(--rojo)"></i>Frutas</button></li>
+        <li><button type="button" data-k="legumbres"><i style="background:var(--morado)"></i>Legumbres y proteínas</button></li>
+      </ul>
+      <p class="plato-info" id="plato-info" aria-live="polite">Ilustración de un plato variado. Toca un color para ver ejemplos bolivianos.</p>
+    </figcaption>
+  </figure>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     3. MI AUTOVALORACIÓN
+     Lógica y cálculos: js/valoracion.js
+     Textos y números: js/datos.js
+     ===================================================== -->
+<section class="sec" id="valoracion">
+  <div class="cab">
+    <h2>Mi autovaloración</h2><p>Completa tus datos y recibe una orientación general. Nada se envía a internet: todo queda en tu propio dispositivo.</p>
+  </div>
+
+  <div class="val">
+
+    <!-- 3A. Formulario (edad, sexo, peso, talla y actividad) -->
+    <form id="form-val" novalidate>
+      <label>Edad (años)<input name="edad" type="number" inputmode="numeric" min="10" max="100" required></label>
+      <label>Sexo<select name="sexo"><option value="m">Masculino</option><option value="f">Femenino</option></select></label>
+      <label>Peso (kg)<input name="peso" type="number" inputmode="decimal" step="0.1" required></label>
+      <label>Talla (cm)<input name="talla" type="number" inputmode="numeric" required></label>
+      <label class="ancho">¿Cuánto te mueves?
+        <select name="act">
+          <option value="0">Casi nada, vida sentada</option>
+          <option value="1" selected>Poco, camino o hago deporte 1 a 3 días</option>
+          <option value="2">Bastante, entreno 3 a 5 días</option>
+          <option value="3">Mucho, entreno casi todos los días</option>
+        </select>
+      </label>
+      <p id="error" class="error" role="alert"></p>
+      <button class="btn ancho" type="submit">Ver mi resultado</button>
+    </form>
+
+    <!-- 3B. Aquí aparece el resultado (lo dibuja js/valoracion.js, empieza vacío) -->
+    <div id="resultado" class="resultado" hidden aria-live="polite"></div>
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     4. MI SEGUIMIENTO (perfil con nombre y PIN)
+     Lógica: js/seguimiento.js
+     Primero se ve el login; al entrar se ve el panel.
+     ===================================================== -->
+<section class="sec alt" id="seguimiento">
+  <div class="cab"><h2>Mi seguimiento</h2><p>Crea un perfil en este dispositivo y registra cada día tu agua, frutas y verduras, movimiento y peso. Tus datos no se envían a internet.</p></div>
+  <div class="seg">
+
+    <!-- 4A. Login: nombre y PIN -->
+    <form id="form-login">
+      <label>Nombre o apodo<input id="l-nombre" maxlength="20" autocomplete="off"></label>
+      <label>PIN de 4 números<input id="l-pin" type="password" inputmode="numeric" maxlength="4" autocomplete="off"></label>
+      <p id="l-error" class="error" role="alert"></p>
+      <button class="btn" type="submit">Entrar</button>
+      <button class="btn btn-linea" type="button" id="b-crear">Crear perfil nuevo</button>
+      <p class="nota-seg">El perfil vive solo en este dispositivo y el PIN es una comodidad, no una protección fuerte. No escribas datos que no quieras compartir.</p>
+    </form>
+
+    <!-- 4B. Panel del perfil (oculto hasta entrar) -->
+    <div id="seg-panel" hidden>
+
+      <!-- Saludo y botones de cerrar sesión / borrar perfil -->
+      <div class="seg-cab"><h3 id="saludo"></h3>
+        <div><button class="btn btn-linea" type="button" id="b-salir">Cerrar sesión</button> <button class="btn btn-linea" type="button" id="b-borrar">Borrar perfil</button></div>
+      </div>
+
+      <div class="seg-cols">
+
+        <!-- Formulario del registro de hoy -->
+        <form id="form-reg">
+          <h3 class="ancho">Registro de hoy</h3>
+          <label>Peso (kg, opcional)<input name="peso" type="number" step="0.1" inputmode="decimal"></label>
+          <label>Vasos de agua<input name="agua" type="number" min="0" max="20" value="0"></label>
+          <label>Porciones de frutas y verduras<input name="fv" type="number" min="0" max="15" value="0"></label>
+          <label>Minutos de actividad<input name="min" type="number" min="0" max="300" value="0"></label>
+          <p id="r-error" class="error" role="alert"></p>
+          <p id="r-ok" class="ok"></p>
+          <button class="btn ancho" type="submit">Guardar registro de hoy</button>
+        </form>
+
+        <!-- Aquí se dibujan las barras, estadísticas y la gráfica de peso (js/seguimiento.js) -->
+        <div id="seg-res"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- =====================================================
+     5. ALIMENTOS
+     Las tarjetas se crean solas desde js/datos.js (ALIMENTOS)
+     Fotos: carpeta img (quinua.jpg, papa.jpg, etc.)
+     ===================================================== -->
+<section class="sec" id="alimentos">
+  <div class="cab"><h2>Alimentos de nuestra tierra</h2><p>Ningún alimento hace milagros solo: la salud viene de comer variado. Estos son algunos que puedes encontrar en los mercados locales.</p></div>
+  <div class="grid" id="grid-alimentos"></div>
+</section>
+
+
+<!-- =====================================================
+     6. ACTIVIDAD FÍSICA
+     Los botones y ejercicios se crean desde js/datos.js (NIVELES_ACTIVIDAD)
+     ===================================================== -->
+<section class="sec alt" id="actividad">
+  <div class="cab"><h2>Muévete a tu ritmo</h2><p>Según la OMS, niñas, niños y adolescentes necesitan en promedio 60 minutos diarios de actividad física. En adultos se recomiendan entre 150 y 300 minutos por semana de actividad moderada.</p></div>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="panel" id="panel" role="tabpanel"></div>
+  <p class="aviso-act">Calienta 5 minutos, toma agua y adapta cada ejercicio a tu condición. Si sientes dolor o tienes una enfermedad, consulta antes a un profesional.</p>
+</section>
+
+
+<!-- =====================================================
+     7. HÁBITOS (texto fijo, se edita aquí mismo)
+     ===================================================== -->
+<section class="sec" id="habitos">
+  <div class="cab"><h2>Hábitos que suman</h2></div>
+  <div class="hab">
+    <div><b>Toma agua</b><p>Ten una botella a mano y bebe a lo largo del día, en lugar de gaseosas o jugos azucarados.</p></div>
+    <div><b>Duerme bien</b><p>El descanso ayuda a concentrarte y a aprender mejor. Intenta dormir a horas regulares.</p></div>
+    <div><b>Cuida la higiene</b><p>Lava tus manos y los alimentos antes de comerlos, y guarda bien lo que sobra.</p></div>
+    <div><b>Haz pausas</b><p>Si pasas horas frente a una pantalla, levántate y estírate cada hora.</p></div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     8. PREGUNTAS FRECUENTES (texto fijo, se edita aquí mismo)
+     Cada pregunta es un bloque <details>
+     ===================================================== -->
+<section class="sec alt" id="preguntas">
+  <div class="cab"><h2>Preguntas frecuentes</h2></div>
+  <div class="faq">
+    <details><summary>¿Esta página reemplaza a un médico o nutricionista?</summary><p>No. Es una herramienta educativa. No diagnostica ni da dietas personalizadas. Ante cualquier duda de salud, consulta a un profesional.</p></details>
+    <details><summary>¿Qué pasa con mis datos?</summary><p>Se guardan únicamente en el navegador de tu dispositivo. No se envían a ningún servidor y puedes borrarlos cuando quieras desde tu resultado.</p></details>
+    <details><summary>¿Por qué alimentos bolivianos?</summary><p>Porque son conocidos, variados y están cerca de nuestras familias. Valorarlos ayuda a comer variado con productos de nuestra región.</p></details>
+    <details><summary>¿Por qué no veo clasificación si soy menor de 18 años?</summary><p>En menores el IMC se interpreta con tablas por edad y sexo, y debe revisarlo un profesional. Aun así, verás tu valor y consejos generales.</p></details>
+  </div>
+</section>
+</main>
+
+
+<!-- =====================================================
+     9. PIE DE PÁGINA: aviso, fuentes y créditos
+     ===================================================== -->
+<footer>
+  <p><b>Aviso:</b> contenido educativo, no sustituye la orientación de profesionales de salud.</p>
+
+  <!-- Fuentes de la información (desplegable) -->
+  <details class="fuentes"><summary>Fuentes de la información</summary>
+    <ul>
+      <li>OMS (2026). Alimentación saludable: al menos 400 g (5 porciones) de frutas y verduras al día y principios de una alimentación saludable.</li>
+      <li>OMS (2025). Obesidad y sobrepeso: IMC desde 25 es sobrepeso y desde 30 obesidad en adultos; en menores de 19 años se usan tablas por edad.</li>
+      <li>OMS (2024). Actividad física: 60 minutos diarios en niñas, niños y adolescentes; 150 a 300 minutos por semana en adultos.</li>
+      <li>Mifflin MD y otros (1990). Am J Clin Nutr 51(2):241-247. Ecuación para calcular las calorías en reposo.</li>
+      <li>EFSA (2010). Valores de referencia de agua: 2,0 litros diarios en mujeres y 2,5 en hombres, contando el agua de los alimentos.</li>
+      <li>FAO. Directrices alimentarias de Bolivia y Quinua; Ministerio de Salud y Deportes de Bolivia (2013). Guía alimentaria escolar.</li>
+      <li>Gutiérrez y otros (2016). Agroindustrial Science 6: el tarwi contiene alcaloides y necesita desamargado.</li>
+      <li>El reparto de calorías por comida, el plato de colores y los menús de ejemplo son propuestas de los autores.</li>
+    </ul>
+  </details>
+
+  <!-- Créditos de los autores -->
+  <p class="cred">Proyecto de innovación, Sistemas Informáticos 2026. U.E.T.H. “San Vicente de Paúl” Fe y Alegría, El Alto.<br>
+  Autores: Ronald Hetzel Mamani Torrez y Marco Antonio Mamani Kuno. Tutora: Prof. Betty Limachi Gutiérrez.</p>
+</footer>
+
+
+
+<!-- =====================================================
+     10. PROGRAMAS (JavaScript)
+     El orden importa: datos.js debe ir primero.
+       datos.js        -> textos, alimentos, metas y números
+       extras.js       -> menú del celular, alimentos, actividad, plato
+       valoracion.js   -> IMC, calorías y resultado
+       seguimiento.js  -> perfil, PIN y registros
+     ===================================================== -->
+<script src="js/datos.js"></script>
+<script src="js/extras.js"></script>
+<script src="js/valoracion.js"></script>
+<script src="js/seguimiento.js"></script>
+</body>
+</html>
